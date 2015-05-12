@@ -1,25 +1,5 @@
-<!DOCTYPE html>
-	<html>
-		<head>
-			<link type="text/css" rel="stylesheet" href="style.css"/>
-		    <meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<title>Silverado Cinema</title>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-		<script src="sc_fun_js.js" ></script>
-		<script src="booking_js.js" ></script>
-
-		</head>
-
-	<body class="header">
-		<div id= center>
-			<header class="header_style" > 
-				<img alt="logo" src="./images/silver_cinema2.png"/>
-			</header>
-		</div>
-	<nav class="nav_a">
-		<a href="index.html">Main</a>  <a href="contact.html">Contact Us</a>  <a href="pListSched.html">Sessions & Prices</a><a href="#">Movies</a>
-	</nav>
+<?php include 'includes/header.php' ?>
+<?php include 'includes/navbar.php' ?>
 	<main>
 		<div class="main_page_content">
 			<div class="container-fluid">
@@ -102,16 +82,7 @@
 			</div><!-- End Bootsrap responsive layout-->
 		</div>
 	</main>
-
-<footer class="footer_style">
-		<span>
-		<strong>? Julian Wise</strong> RMIT Student s3514010. <strong>Jiapeng Zhu</strong> RMIT Student s3403275</span>
-		      <a href="http://validator.w3.org/check?uri=referer"><img src="./images/HTML5_Logo_32.png" alt="HTML Validator"></a> |
-		      <a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="./images/vcss-blue" alt="CSS Validator"></a> 
-		</footer>
-		</body>	
-	</html>
-	
+<?php include 'includes/footer.php' ?>	
 	<!--All film images and additional 'expand details' for movies are from the United States Public Domain. For more information go to				http://en.wikipedia.org/wiki/List_of_films_in_the_public_domain_in_the_United_States
 			For a direct source, please follow the links below
 			Superman - http://en.wikipedia.org/wiki/Superman_(1940s_cartoons)#/media/File:Supermanshorttitle.PNG 

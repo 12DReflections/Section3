@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-	<html>
-		<head>
-			<link type="text/css" rel="stylesheet" href="style.css"/>
-		    <title>Silverado Cinema</title>
-		</head>
+<?php include 'includes/header.php' ?>
+<?php include 'includes/navbar.php' ?>	
 
-	<body class="header">
-		<div id= center>
-		<header class="header_style" > 
-			<img alt="logo" src="./images/silver_cinema2.png"/>
-	</header>
-	</div>
-	<nav class="nav_a">
-		<a href="index.html">Main</a>  <a href="contact.html">Contact Us</a>  <a href="#">Sessions & Prices</a><a href="movies.html">Movies</a>
-	</nav>
-	
 	<div class="main_page_content">
 	    <main>
 			<div class content>
@@ -114,11 +100,4 @@
 		</main>
 	</div>
 </body>	
-<footer class="footer_style">
-		<span>
-		<strong>© Julian Wise</strong> RMIT Student s3514010. <strong>Jiapeng Zhu</strong> RMIT Student s3403275</span>
-		      <a href="http://validator.w3.org/check?uri=referer"><img src="./images/HTML5_Logo_32.png" alt="HTML Validator"></a> |
-		      <a href="http://jigsaw.w3.org/css-validator/check/referer"><img src="./images/vcss-blue" alt="CSS Validator"></a> 
-		</footer>
-		
-	</html>
+<?php include 'includes/footer.php' ?>
