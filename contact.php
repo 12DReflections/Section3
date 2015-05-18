@@ -1,7 +1,16 @@
-<?php include 'includes/header.php' ?>
-<?php include 'includes/navbar.php' ?>	
-	<main>
-		<div class="main_div">
+<!doctype html>
+<HTML>
+    <head>
+        <title>Main Page</title>
+        <?php include './head.php';?>
+    </head>
+    <body>
+        <div class="container">
+            <?php include './header.php'; ?>
+            <?php include './navbar.php'; ?>
+           
+	    <main>
+				<div class="main_div">
 		<h1>Contact Us</h1>
 		<form action="http://titan.csit.rmit.edu.au/~e54061/wp/form-tester.php" method="post">
 
@@ -35,5 +44,9 @@
 			</div>
 		</form>
 		</div>
-		</main>
-<?php include 'includes/footer.php' ?>
+	</main>
+			</div>
+            <footer></footer>
+        </div>  
+    </body>
+</HTML>

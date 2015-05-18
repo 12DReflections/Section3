@@ -1,7 +1,11 @@
 <!doctype html>
+<?php 
+session_start();
+?>
+
 <HTML>
     <head>
-        <title>Movie</title>
+        <title>Main Page</title>
         <?php include './head.php'; ?>
     </head>
     <body>
@@ -9,7 +13,8 @@
             <?php include './header.php'; ?>
             <?php include './navbar.php'; ?>
             <br><br><br>
-            <main id='main_area'>                
+            <main id='main-area'>
+                <?php  include_once './populatecart.php';?>
             </main>
         </div>
         <footer></footer>

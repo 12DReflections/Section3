@@ -1,53 +1,56 @@
-    var sa_price = 0, sa_sin_price, sp_price = 0, sp_sin_price, sc_price = 0, sc_sin_price, fa_price = 0, fa_sin_price;
-            var fc_price = 0, fc_sin_price, b1_price = 0, b_sin_price, b2_price = 0, b3_price = 0;
+            var sa_price = 0, sa_sin_price = 0, sp_price = 0, sp_sin_price = 0, sc_price = 0, sc_sin_price = 0, fa_price = 0, fa_sin_price = 0;
+            var fc_price = 0, fc_sin_price = 0, b1_price = 0, b_sin_price = 0, b2_price = 0, b3_price = 0;
             var total_price = 0;
             var film_name;
             var days;
             var time;
             var mov_type;
             set_sin_price_normal();
-
+            
+        /*Set Movie Time */
             function set_time(day, mov_typ) {
                 switch (mov_typ) {
                     case "AC":
                         switch (day) {
                             case "Monday":
-							case "Tuesday":	time = "9:00 pm"; set_sin_price_normal(); break;
+                            case "Tuesday":	time = "9:00 pm"; set_sin_price_normal(); break;
                             case "Wednesday":
-							case "Thursday":
-							case "Friday":	time = "9:00 pm"; set_sin_price_normal(); break;
-                            default: time = "9:00 pm"; set_sin_price_special();
-                        } break;
+                            case "Thursday":
+                            case "Friday":	time = "9:00 pm"; set_sin_price_normal(); break;
+                            default:            time = "9:00 pm"; set_sin_price_special();
+                        }   break;
                     case "CH":
                         switch (day) {
-						case "Monday":
-							case "Tuesday":	time = "1:00 pm"; set_sin_price_normal(); break;
+                            case "Monday":
+                            case "Tuesday":	time = "1:00 pm"; set_sin_price_normal(); break;
                             case "Wednesday":
-							case "Thursday":
-							case "Friday":	time = "6:00 pm"; set_sin_price_normal(); break;
-                            default: time = "12:00 pm"; set_sin_price_special();
+                            case "Thursday":
+                            case "Friday":	time = "6:00 pm"; set_sin_price_normal(); break;
+                            default:            time = "12:00 pm"; set_sin_price_special();
                         }; break;
                     case "AF":switch (day) {
-						case "Monday":
-							case "Tuesday":	time = "6:00 pm"; set_sin_price_normal(); break;
-                             case "Satuday":
-								 case "Sunday": time = "3:00 pm"; set_sin_price_special(); break;
+                            case "Monday":
+                            case "Tuesday":	time = "6:00 pm"; set_sin_price_normal(); break;
+                            case "Satuday":
+                            case "Sunday":      time = "3:00 pm"; set_sin_price_special(); break;
                         }break;
 
                     case "RC":
-                        switch (day) {
-						case "Monday":
-							case "Tuesday":	time = "9:00 pm"; set_sin_price_normal(); break;
+                            switch (day) {
+                            case "Monday":
+                            case "Tuesday":	time = "9:00 pm"; set_sin_price_normal(); break;
                             case "Wednesday":
-							case "Thursday":
-							case "Friday":	time = "1:00 pm";set_sin_price_special(); break;
-                            default: time = "6:00 pm"; set_sin_price_special();
+                            case "Thursday":
+                            case "Friday":	time = "1:00 pm";set_sin_price_special(); break;
+                        default: time = "6:00 pm"; set_sin_price_special();
                         }
 
                 }
          
                 $('#time_val').text(time);
             }
+            
+        /* Setting prices and Creating Table */
             function set_sin_price_normal() {
 
                 sa_sin_price = 12;
@@ -67,7 +70,7 @@
                 b_sin_price = 30;
             }
             function create_table(id) {
-                $('#' + id).append("<form id='book_form' action='http://titan.csit.rmit.edu.au/~e54061/wp/form-tester-2.php' method='post'></form>");
+                $('#' + id).append("<form id='book_form' method='post'></form>");
                 $('#book_form').append("<table id='book_table' class='content_table'></table>");
                 $('#book_table').append("<tr id='mov_name_row'></tr>");
                 $('#mov_name_row').append("<td id='mov_name'></td><td id='mov_name_val_td' colspan='2'></td>");
@@ -80,7 +83,7 @@
                 }
                 $('#day_row').after("<tr id='mov_time_row'><td id='time_lb_td'><p>Time<p></td><td id='time_val_td' colspan='2'><p id='time_val'></p></td></tr>");
                 set_time($('#day_sel').val(), mov_type);
-                $('#day_sel').live("change", function () {
+                $('#day_sel').on("change", function () {
                     set_time($('#day_sel').val(), mov_type);
                     set_price('sa');
                     set_price('sp');
@@ -91,7 +94,8 @@
                     set_price('b2');
                     set_price('b3');
                 });
-                /*the price table*/
+            
+            /*Price Table*/
                 $('#mov_time_row').after("<tr id='price_col_title' class='hoverTable'><td class='content_big_td'>Ticket Type</td><td>Quanity</td><td class='content_sml_td'>Subtotal Priceset</td></tr>");
                 var title = "price_col_title";
                 $('#book_table').append("<tr id='sa_row'><td id='sa_lab_row'><p>Standard Adult</p></td><td id='sa_qua_td'><select id='sa_qua'></select></td><td id='sa_price_td'><p id='sa_price'></p></td</tr>");
@@ -139,7 +143,7 @@
                 $('#book_form').append("<input id='b2' type='hidden' name='B2' />");
                 $('#book_form').append("<input id='b3' type='hidden' name='B3' />");
                 $('#book_form').append("<input id='price' type='hidden' name='price' />");
-                $('#book_form').append("<button id='submit_btn' class='pay_button' disabled>Pay</button>");
+                $('#book_form').append("<input type='button' id='submit_btn' class='pay_button' value='Add To Cart' style='width:200px;' disabled></input>");
             }
             function add_qua_opt(type) {
                 for (var i = 0; i < 10; i++) {
@@ -147,10 +151,12 @@
                 }
             }
             function add_sel_ent(type) {
-                $('#' + type + '_qua').live("change", function () {
+                $('#' + type + '_qua').on("change", function () {
                     set_price(type);
                 });
             }
+            
+        /*Select Prices */
             function set_price(type) {
                 var price = cal_price(type);
                 $('#' + type + '_price').text('$ ' + price.toFixed(2));
@@ -206,6 +212,8 @@
                 $('#total_price').text("$ " + total_price.toFixed(2));
                 return price;
             }
+            
+        /*Calculate total Price*/
             function cal_total_price() {
                 total_price = sa_price + sp_price + sc_price + fa_price + fc_price + b1_price + b2_price + b3_price;
 				if(total_price !=0)
@@ -218,8 +226,12 @@
 				}
                 return total_price;
             }
-            $(document).ready(function () {
-                $("#a1_expand").click(function () {
+            
+        /* Expand and Collapse Functions */
+            
+        /*A1 Expand*/
+                $(document).ready(function () {
+                $(document).on('click', '#a1_expand', function () {
 					days=new Array(2);
 					days[0]=$('#mov1_day1').text();
 					days[1]=$('#mov1_day2').text();
@@ -228,70 +240,78 @@
                     $('#a1_expand').css("display", "none");
                     $("#a1_fold").fadeIn();
                     create_table("table_container1");
-					$('#mov1_des').slideDown();
+                    $('#mov1_des').slideDown();
                     $('#table_container1').slideDown();
                     $("#a2_fold").fadeOut();
                     $('#a2_expand').fadeIn();
                     $('#table_container2').empty();
                     $('#table_container2').css("display", "none");
-					$('#mov2_des').slideUp();
+                    $('#mov2_des').slideUp();
                     $("#a3_fold").fadeOut();
                     $('#a3_expand').fadeIn();
                     $('#table_container3').empty();
                     $('#table_container3').css("display", "none");
-					$('#mov3_des').slideUp();
+                    $('#mov3_des').slideUp();
                     $("#a4_fold").fadeOut();
                     $('#a4_expand').fadeIn();
                     $('#table_container4').empty();
                     $('#table_container4').css("display", "none");
-					$('#mov4_des').slideUp();
+                    $('#mov4_des').slideUp();
 
                 });
-                $("#a1_fold").click(function () {
+                
+            /*A1 Fold */    
+                $(document).on('click', '#a1_fold', function(){
                     $('#a1_fold').css("display", "none");
                     $('#a1_expand').fadeIn();
-					$('#mov1_des').slideUp();
+                    $('#mov1_des').slideUp();
                     $('#table_container1').slideUp(function () { $('#table_container1').empty() });
 
                 });
-                $("#a2_expand").click(function () {
-					days=new Array(2);
-					days[0]=$('#mov2_day1').text();
-					days[1]=$('#mov2_day2').text();
+                
+            /*A2 Expand */
+                 $(document).on('click', '#a2_expand', function () {
+                    days=new Array(2);
+                    days[0]=$('#mov2_day1').text();
+                    days[1]=$('#mov2_day2').text();
                     $("#a1_fold").fadeOut();
                     $('#a1_expand').fadeIn();
-					$('#mov1_des').slideUp();
+                    $('#mov1_des').slideUp();
                     $('#table_container1').empty();
                     $('#table_container1').css("display", "none");
                     $("#a3_fold").fadeOut();
                     $('#a3_expand').fadeIn();
                     $('#table_container3').empty();
                     $('#table_container3').css("display", "none");
-					$('#mov3_des').slideUp();
+                    $('#mov3_des').slideUp();
                     $("#a4_fold").fadeOut();
                     $('#a4_expand').fadeIn();
                     $('#table_container4').empty();
                     $('#table_container4').css("display", "none");
-					$('#mov4_des').slideUp();
+                    $('#mov4_des').slideUp();
                     mov_type = $('#mov2').val();
                     film_name = $('#mov2_title').text();
                     $('#a2_expand').css("display", "none");
                     $("#a2_fold").fadeIn();
                     create_table("table_container2");
                     $('#table_container2').slideDown();
-					$('#mov2_des').slideDown();
+                    $('#mov2_des').slideDown();
 
 
 
                 });
-                $("#a2_fold").click(function () {
+                
+            /* A2 Fold */
+                $(document).on('click', '#a2_fold', function () {
                     $('#a2_fold').css("display", "none");
                     $('#a2_expand').fadeIn();
                     $('#table_container2').slideUp(function () { $('#table_container2').empty() });
-					$('#mov2_des').slideUp();
+                    $('#mov2_des').slideUp();
 
                 });
-                $("#a3_expand").click(function () {
+            
+                /* A3 Expand */
+                    $(document).on('click', '#a3_expand', function () {
 					days=new Array(2);
 					days[0]=$('#mov3_day1').text();
 					days[1]=$('#mov3_day2').text();
@@ -299,52 +319,56 @@
                     $('#a1_expand').fadeIn();
                     $('#table_container1').empty();
                     $('#table_container1').css("display", "none");
-					$('#mov1_des').slideUp();
+                    $('#mov1_des').slideUp();
                     $("#a2_fold").fadeOut();
                     $('#a2_expand').fadeIn();
                     $('#table_container2').empty();
                     $('#table_container2').css("display", "none");
-					$('#movw_des').slideUp();
+                    $('#movw_des').slideUp();
                     $("#a4_fold").fadeOut();
                     $('#a4_expand').fadeIn();
                     $('#table_container4').empty();
                     $('#table_container4').css("display", "none");
-					$('#mov4_des').slideUp();
+                    $('#mov4_des').slideUp();
                     mov_type = $('#mov3').val();
                     film_name = $('#mov3_title').text();
                     $('#a3_expand').css("display", "none");
                     $("#a3_fold").fadeIn();
                     create_table("table_container3");
                     $('#table_container3').slideDown();
-					$('#mov3_des').slideDown();
+                    $('#mov3_des').slideDown();
 
 
                 });
-                $("#a3_fold").click(function () {
+                
+            /* A3 Fold */
+            $(document).on('click', '#a3_fold', function () {
                     $('#a3_fold').css("display", "none");
                     $('#a3_expand').fadeIn();
                     $('#table_container3').slideUp(function () { $('#table_container3').empty() });
 					$('#mov3_des').slideUp();
 
                 });
-                $("#a4_expand").click(function () {
-                     days=new Array(2);
+                
+            /* A4 Expand */
+                    $(document).on('click', '#a4_expand', function () {
+                                        days=new Array(2);
 					days[0]=$('#mov4_day1').text();
 					days[1]=$('#mov4_day2').text();
                     $('#a1_expand').fadeIn();
                     $('#table_container1').empty();
                     $('#table_container1').css("display", "none");
-					$('#mov1_des').slideUp();
+                    $('#mov1_des').slideUp();
 
                     $("#a2_fold").fadeOut();
                     $('#a2_expand').fadeIn();
-					$('#mov2_des').slideUp();
+                    $('#mov2_des').slideUp();
 
                     $('#table_container2').empty();
                     $('#table_container2').css("display", "none");
                     $("#a3_fold").fadeOut();
                     $('#a3_expand').fadeIn();
-					$('#mov3_des').slideUp();
+                    $('#mov3_des').slideUp();
                     $('#table_container3').empty();
                     $('#table_container3').css("display", "none");
                     mov_type = $('#mov4').val();
@@ -353,18 +377,19 @@
                     $("#a4_fold").fadeIn();
                     create_table("table_container4");
                     $('#table_container4').slideDown();
-					$('#mov4_des').slideDown();
-
+                    $('#mov4_des').slideDown();
                 });
-                $("#a4_fold").click(function () {
+            
+            /* A4 Fold */
+            $(document).on('click', '#a4_fold', function () {
                     $('#a4_fold').css("display", "none");
                     $('#a4_expand').fadeIn();
                     $('#table_container4').slideUp(function () { $('#table_container4').empty() });
-					$('#mov4_des').slideUp();
-
-
+                    $('#mov4_des').slideUp();
                 });
-                $('#submit_btn').live("click", function () {
+                
+            /* Submit Functions */
+                $(document).on('click', '#submit_btn', function () {                    
                     $('#film').val(film_name);
                     $('#day').val($('#day_sel').val());
                     $('#time').val(time);
@@ -377,9 +402,40 @@
                     $('#b2').val((parseInt($('#b2_qua').val()) * 2));
                     $('#b3').val((parseInt($('#b3_qua').val()) * 3));
                     $('#price').val(total_price);
-                    $('#book_form').submit()
+                    //$('#book_form').submit()
+                    var day = $('#day_sel').val();
+                    var sa = $('#sa_qua').val();
+                    var sp = $('#sp_qua').val();
+                    var sc = $('#sc_qua').val();
+                    var fa = $('#fa_qua').val();
+                    var fc = $('#fc_qua').val();
+                    var b1 = $('#b1_qua').val();
+                    var b2 = $('#b2_qua').val();
+                    var b3 = $('#b3_qua').val();
+                    
+                    // make ajax request to bookingdata page
+                    var datastring = "film=" + film_name + "&day=" + day + "&time=" + time +
+                            "&sa=" + sa + "&sp=" + sp + "&sc=" + sc + "&fa=" + fa + "&fc=" + fc + "&b1=" + b1
+                    + "&b2=" + b2 + "&b3=" + b3 + "&sa_price=" + sa_price + "&sp_price=" + sp_price + "&sc_price=" + sc_price 
+                    + "&fa_price=" + fa_price + "&fc_price=" + fc_price + "&b1_price=" + b1_price 
+                    + "&b2_price=" + b2_price + "&b3_price=" + b3_price 
+                    + "&total=" + total_price;
+            
+                    $.ajax( {
+                    type: "POST",
+                    url:  "bookingdata.php",  
+                    data: datastring,
+                    success:operationSuccess,
+                    error: operationError
+                    }
+                   );  
+            
                 });
+                
+               
             });
+            
+/*Number Formatting */
 function changeTwoDecimal_f(x)
 {
 var f_x = parseFloat(x);
@@ -402,3 +458,13 @@ s_x += '0';
 }
 return s_x;
 }
+
+function operationSuccess(response)
+ {
+      alert(response);
+ }
+ 
+  function  operationError(response)
+ {
+     alert(response);
+ }
