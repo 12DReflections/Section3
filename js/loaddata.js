@@ -1,5 +1,37 @@
 $(document).ready(function()
 {
+       var grand_val = $("#grand_total").html();
+
+        $("#btn").click(function(event){
+    event.preventDefault();
+            var code = $("#code").val();
+            $.ajax({
+                url:"check_code.php",
+                type:"post",
+                data:{code:code},
+                success:function(msg){
+
+                    if(msg)
+                    {
+                      if(msg >0)
+                      {
+                        var val = 0;
+                        val += grand_val * 0.2;
+                        val = grand_val - val;
+
+                        $("#grand_total").fadeOut();
+                        $("#grand_total").html(val).fadeIn();
+                        $("#voucher").fadeIn().html("20% off");
+
+                        $('.check_voucher').attr('disabled',true);
+                      
+                      }
+                    }
+                    
+                }
+            });
+        
+        });
  $('#main-area').on('click', '#remove-from-cart', function(){
            var index = $(this).val();
            var datastring = "Opeartion=RemoveFromCart" + "&key=" + index;

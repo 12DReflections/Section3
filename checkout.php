@@ -15,6 +15,7 @@ session_start();
             <br><br><br>
             <main id='main-area'>
                 <?php  include_once './populatecart.php';?>
+
             </main>
         </div>
         <footer></footer>

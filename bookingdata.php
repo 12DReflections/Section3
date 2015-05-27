@@ -25,6 +25,25 @@ if( !isset($_SESSION['cart']) )
 {
 	$_SESSION['cart'] = array();
 }
+
+  $grand_total = 0;
+
+  foreach($_SESSION as $key => $value)
+  {
+  	  if(is_array($value))
+  	  {
+  		foreach($value as $v)
+  		{
+  			$grand_total += $v[18];
+  		}
+
+  	}
+  }
+ 
+
+  $_SESSION['grand_total'] = isset($_SESSION['voucher']) ? ($grand_total+$total) - (($grand_total+$total)*0.2) : $grand_total+$total;
+  $_SESSION['total'] = $grand_total+$total;
+
 $count = count($_SESSION['cart']);
 
 $_SESSION['cart'][$count] = array($day, $time, $sa, $sa_price, $sp, $sp_price, $sc, $sc_price, $fa, $fa_price,

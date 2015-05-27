@@ -1,6 +1,10 @@
 <?php
 session_start();
 include_once './head.php'; 
+$_SESSION['username']=$_POST['name'];
+$_SESSION['email_addr']=$_POST['email'];
+$_SESSION['phone_num']=$_POST['phone'];
+$_SESSION['addr']=$_POST['address'];
 ?>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -16,7 +20,5 @@ include_once './head.php';
 $removeButtonNotRequired = true;
 $showGrandTotal = true;
 include_once './populatecart.php';
-session_destroy();
-session_start();
 ?>
 

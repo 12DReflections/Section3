@@ -38,7 +38,7 @@ function addToArray(&$array, $key, $index){
 }
 
 ?>
-
+ 
        <?php   
             if(empty($_SESSION['cart']) == true)
             {
@@ -96,14 +96,53 @@ function addToArray(&$array, $key, $index){
                     {
                     echo "<button type='button' class='btn btn-primary' id='empty-cart'>Empty Cart</button>";                    
                     echo "<a href='./finalcheckout.php' type='button' class='btn btn-primary' id='check-out'>Check Out</a>";
+                   
                     }
                     
                     if(empty($showGrandTotal) == false)
                     {
-                        echo "<p class='alert alert-info'><strong>Grand Total: \$$grandTotal</strong></p><hr>";
+                       echo "<a href='./print_page.php'><button class='btn btn-primary'>Confirm and Print</button></a>";
                     }
                     ?>
                     
                 </div> 
                 </div>
-</div>
+</div>          
+  <form id="form1">
+  <h3>Enter Code</h3>
+    <p>
+    <input type='text' name='code' id='code' value='12345-67890-TK'/>
+    
+    <?php if(isset($_SESSION['voucher'])): ?>  
+
+    <span>20% off</span>
+
+  <?php else: ?>
+
+    <button class="check_voucher" id = "btn">check</button>
+  
+  <?php endif; ?>
+
+  </p>
+  </form>
+  <table class="table table-striped table-hover table-bordered">
+
+    <tr>
+       <td>Total:</td> 
+       <td>Voucher:</td>
+       <td>Grand Total:</td>
+    </tr>
+
+    <tr>
+      <td>$<span>
+        <?php 
+           if(isset($_SESSION['total']))
+        
+            { echo $_SESSION['total'];}; 
+
+        ?></span></td>
+      <td><span id="voucher"><?php if(isset($_SESSION['voucher'])){ echo "20% off";}; ?></span></td>
+      <td>$<span id="grand_total"><?php if(isset($_SESSION['grand_total'])){ echo $_SESSION['grand_total'];}; ?></span></td>
+    </tr>
+
+  </table>
