@@ -44,7 +44,7 @@ session_start();
                 include_once './populatecart.php';?>
             </main>
         </div>
-        <footer></footer>
+        <footer><?php include './footer.php'; ?></footer>
     </div>  
 </body>
 </HTML>

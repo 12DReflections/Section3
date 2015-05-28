@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class="container">
-            <?php include './header.php'; ?>
+            <?php include './footer.php'; ?>
             <?php include './navbar.php'; ?>
             <br><br><br>
             <main>
@@ -73,7 +73,7 @@
                 -->
             </main>
         </div>
-        <footer></footer>
+        <footer>  <?php include './footer.php'; ?>	</footer>
     </div>  
 </body>
 </HTML>

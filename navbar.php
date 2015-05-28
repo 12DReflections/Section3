@@ -13,7 +13,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-          <a class="navbar-brand" href="#">Julian's Website</a>
+          <a class="navbar-brand" href="#">Silverado</a>
      </div>
     
 <div class="collapse navbar-collapse navbar-collapse-left" id="main-menu">
